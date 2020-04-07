@@ -2,7 +2,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
 
-import { TokenStorageService } from '../_services/token-storage.service';
+import { TokenStorageService } from '../services/token-storage.service';
 
 const TOKEN_HEADER_KEY = 'Authorization';       // for Spring Boot back-end
 // const TOKEN_HEADER_KEY = 'x-access-token';   // for Node.js Express back-end
