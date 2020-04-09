@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TransactionService } from 'src/app/services/transaction.service';
+import { Transaction } from 'src/app/shared/transaction';
 
 @Component({
   selector: 'app-transaction-list',
@@ -9,7 +10,7 @@ import { TransactionService } from 'src/app/services/transaction.service';
 })
 export class TransactionListComponent implements OnInit {
 
-  transactions: any = [];
+  transactions: Transaction[] = [];
   walletId = this.actRoute.snapshot.params.walletId;
 
   constructor(
@@ -23,8 +24,8 @@ export class TransactionListComponent implements OnInit {
   }
 
   loadTransactions() {
-    return this.transactionService.getTransactionsForWallet(this.walletId).subscribe((data: {}) => {
-      this.transactions = data;
+    return this.transactionService.getTransactionsForWallet(this.walletId).subscribe((data)=> {
+      this.transactions = data
     });
   }
 

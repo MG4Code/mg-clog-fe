@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WalletService } from 'src/app/services/wallet.service';
+import { Wallet } from 'src/app/shared/wallet';
 
 @Component({
   selector: 'app-wallet-list',
@@ -8,7 +9,7 @@ import { WalletService } from 'src/app/services/wallet.service';
 })
 export class WalletListComponent implements OnInit {
 
-  wallets: any = [];
+  wallets: Wallet[] = [];
 
   constructor(public walletService: WalletService) { }
 
@@ -17,12 +18,10 @@ export class WalletListComponent implements OnInit {
   }
 
   loadWallets() {
-    return this.walletService.getWallets().subscribe((data: {}) => {
+    return this.walletService.getWallets().subscribe((data: Wallet[]) => {
       this.wallets = data;
     });
   }
-
-  
 
   deleteWallet(id) {
     if (window.confirm('Are you sure, you want to delete?')) {

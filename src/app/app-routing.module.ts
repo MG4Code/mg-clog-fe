@@ -3,27 +3,24 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
-import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { BoardUserComponent } from './components/board-user/board-user.component';
-import { BoardAdminComponent } from './components/board-admin/board-admin.component';
 import { WalletListComponent } from './components/wallet/wallet-list/wallet-list.component';
 import { WalletCreateComponent } from './components/wallet/wallet-create/wallet-create.component';
 import { WalletEditComponent } from './components/wallet/wallet-edit/wallet-edit.component';
 import { TransactionListComponent } from './components/transaction/transaction-list/transaction-list.component';
+import { TransactionCreateComponent } from './components/transaction/transaction-create/transaction-create.component';
+import { AuthGuard } from './guards/auth-guard';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'profile', component: ProfileComponent },
-  { path: 'user', component: BoardUserComponent },
-  { path: 'admin', component: BoardAdminComponent },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
   { path: 'wallet-list', component: WalletListComponent },
   { path: 'wallet-create', component: WalletCreateComponent },
   { path: 'wallet-edit/:id', component: WalletEditComponent },
   { path: 'transaction-list/:walletId', component: TransactionListComponent },
-  { path: '', redirectTo: 'home', pathMatch: 'full' }
+  { path: 'transaction-create', component: TransactionCreateComponent , canActivate: [AuthGuard]},
+  { path: '', redirectTo: 'transaction-create', pathMatch: 'full' }
 ];
 
 @NgModule({

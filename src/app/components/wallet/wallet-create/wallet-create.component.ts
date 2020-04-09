@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { WalletService } from 'src/app/services/wallet.service';
 import { Router } from '@angular/router';
+import { Wallet } from 'src/app/shared/wallet';
 
 @Component({
   selector: 'app-wallet-create',
@@ -9,10 +10,7 @@ import { Router } from '@angular/router';
 })
 export class WalletCreateComponent implements OnInit {
 
-  @Input() wallet = {
-    name: '',
-    number: ''
-  };
+  @Input() wallet: Wallet = {} as Wallet;
 
   constructor(
     public walletService: WalletService,

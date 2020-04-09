@@ -8,9 +8,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
-import { HomeComponent } from './components/home/home.component';
-import { BoardAdminComponent } from './components/board-admin/board-admin.component';
-import { BoardUserComponent } from './components/board-user/board-user.component';
 import { ProfileComponent } from './components/profile/profile.component';
 
 import { authInterceptorProviders } from './interceptors/auth.interceptor';
@@ -19,15 +16,14 @@ import { WalletEditComponent } from './components/wallet/wallet-edit/wallet-edit
 import { WalletCreateComponent } from './components/wallet/wallet-create/wallet-create.component';
 import { TransactionListComponent } from './components/transaction/transaction-list/transaction-list.component';
 import { TransactionCreateComponent } from './components/transaction/transaction-create/transaction-create.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AuthGuard } from './guards/auth-guard';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent,
-    BoardAdminComponent,
-    BoardUserComponent,
     ProfileComponent,
     WalletListComponent,
     WalletEditComponent,
@@ -38,10 +34,12 @@ import { TransactionCreateComponent } from './components/transaction/transaction
   imports: [
     BrowserModule,
     AppRoutingModule,
+    NgbModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+
   ],
-  providers: [authInterceptorProviders],
+  providers: [authInterceptorProviders, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -40,15 +40,15 @@ export class TransactionService {
       );
   }
 
-  getTransactionsForWallet(walletId): Observable<Transaction> {
-    return this.http.get<Transaction>(TRANSACTION_URL + 'wallet/' + walletId)
+  getTransactionsForWallet(walletId: string): Observable<Transaction[]> {
+    return this.http.get<Transaction[]>(TRANSACTION_URL + 'wallet/' + walletId)
       .pipe(
         retry(1),
         catchError(this.handleError)
       );
   }
 
-  createTransaction(transaction): Observable<Transaction> {
+  createTransaction(transaction: Transaction): Observable<Transaction> {
     return this.http.post<Transaction>(TRANSACTION_URL, JSON.stringify(transaction), this.httpOptions)
       .pipe(
         retry(1),
@@ -56,14 +56,14 @@ export class TransactionService {
       );
   }
 
-  checkTransaction(id): Observable<Transaction> {
+  checkTransaction(id: string): Observable<Transaction> {
     return this.http.get<Transaction>(TRANSACTION_URL + id + '/check')
       .pipe(
         retry(1),
         catchError(this.handleError)
       );
   }
-  uncheckTransaction(id): Observable<Transaction> {
+  uncheckTransaction(id: string): Observable<Transaction> {
     return this.http.get<Transaction>(TRANSACTION_URL + id + '/uncheck')
       .pipe(
         retry(1),

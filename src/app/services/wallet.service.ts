@@ -4,7 +4,6 @@ import { Observable, throwError } from 'rxjs';
 import { Wallet } from '../shared/wallet'
 import { retry, catchError } from 'rxjs/operators';
 
-const WALLET_URL = 'http://localhost:8080/clog/v1/wallet/';
 const MY_WALLET_URL = 'http://localhost:8080/clog/v1/wallet/my/';
 
 const httpOptions = {
@@ -25,15 +24,15 @@ export class WalletService {
     })
   };
 
-  getWallets(): Observable<Wallet> {
-    return this.http.get<Wallet>(MY_WALLET_URL)
+  getWallets(): Observable<Wallet[]> {
+    return this.http.get<Wallet[]>(MY_WALLET_URL)
       .pipe(
         retry(1),
         catchError(this.handleError)
       );
   }
 
-  getWallet(id): Observable<Wallet> {
+  getWallet(id: string): Observable<Wallet> {
     return this.http.get<Wallet>(MY_WALLET_URL + id)
       .pipe(
         retry(1),
@@ -41,7 +40,7 @@ export class WalletService {
       );
   }
 
-  updateWallet(id, wallet): Observable<Wallet> {
+  updateWallet(id: string, wallet: Wallet): Observable<Wallet> {
     return this.http.put<Wallet>(MY_WALLET_URL + id, JSON.stringify(wallet), this.httpOptions)
       .pipe(
         retry(1),
@@ -49,7 +48,7 @@ export class WalletService {
       );
   }
 
-  createWallet(wallet): Observable<Wallet> {
+  createWallet(wallet: Wallet): Observable<Wallet> {
     return this.http.post<Wallet>(MY_WALLET_URL, JSON.stringify(wallet), this.httpOptions)
       .pipe(
         retry(1),
@@ -57,7 +56,7 @@ export class WalletService {
       );
   }
 
-  deleteWallet(id) {
+  deleteWallet(id: string) {
     return this.http.delete<Wallet>(MY_WALLET_URL + id, this.httpOptions)
       .pipe(
         retry(1),

@@ -5,7 +5,7 @@ export class Transaction {
     wallet: string;
     owner: string;
     amount: number;
-    dateTime: string;
+    dateTime: Date;
     checked: boolean;
 
 }

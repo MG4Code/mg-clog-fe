@@ -18,7 +18,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let transaction of transactions">
-            <td>{{transaction.dateTime}}</td>
+            <td>{{transaction.dateTime  | date:'short' }}</td>
             <td>{{transaction.amount}}</td>
             <td>{{transaction.note}}</td>
             <td>{{transaction.owner}}</td>
