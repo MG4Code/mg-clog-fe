@@ -1,1 +1,31 @@
-<p>wallet-list works!</p>
+<div class="panel panel-primary">
+    <div class="no-data text-center" *ngIf="wallets.length == 0">
+      <p>There is no wallet added yet!</p>
+      <button class="btn btn-outline-primary" routerLink="/wallet-create">Add Wallet</button>
+    </div>
+    <div *ngIf="wallets.length !== 0">
+      <h3 class="mb-3 text-center panel-header">Wallet List</h3>
+      <div class="col-md-12">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th scope="col">Number</th>
+            <th scope="col">Name</th>
+            <th scope="col"></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let wallet of wallets">
+            <td>{{wallet.number}}</td>
+            <td>{{wallet.name}}</td>
+            <td>    
+              <span class="btn btn-info" routerLink="/wallet-edit/{{wallet.id}}">Edit </span>
+              <span class="btn btn-danger" (click)="deleteWallet(wallet.id)">Delete </span>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <span class="btn btn-dark" routerLink="/wallet-create">Add Wallet </span>
+    </div>
+  </div>

@@ -15,6 +15,8 @@ import { ProfileComponent } from './components/profile/profile.component';
 
 import { authInterceptorProviders } from './interceptors/auth.interceptor';
 import { WalletListComponent } from './components/wallet/wallet-list/wallet-list.component';
+import { WalletEditComponent } from './components/wallet/wallet-edit/wallet-edit.component';
+import { WalletCreateComponent } from './components/wallet/wallet-create/wallet-create.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { WalletListComponent } from './components/wallet/wallet-list/wallet-list
     BoardAdminComponent,
     BoardUserComponent,
     ProfileComponent,
-    WalletListComponent
+    WalletListComponent,
+    WalletEditComponent,
+    WalletCreateComponent
   ],
   imports: [
     BrowserModule,
