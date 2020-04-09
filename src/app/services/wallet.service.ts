@@ -26,7 +26,7 @@ export class WalletService {
   };
 
   getWallets(): Observable<Wallet> {
-    return this.http.get<Wallet>(WALLET_URL)
+    return this.http.get<Wallet>(MY_WALLET_URL)
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -34,7 +34,7 @@ export class WalletService {
   }
 
   getWallet(id): Observable<Wallet> {
-    return this.http.get<Wallet>(WALLET_URL + id)
+    return this.http.get<Wallet>(MY_WALLET_URL + id)
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -42,7 +42,7 @@ export class WalletService {
   }
 
   updateWallet(id, wallet): Observable<Wallet> {
-    return this.http.put<Wallet>(WALLET_URL + id, JSON.stringify(wallet), this.httpOptions)
+    return this.http.put<Wallet>(MY_WALLET_URL + id, JSON.stringify(wallet), this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -58,7 +58,7 @@ export class WalletService {
   }
 
   deleteWallet(id) {
-    return this.http.delete<Wallet>(WALLET_URL + id, this.httpOptions)
+    return this.http.delete<Wallet>(MY_WALLET_URL + id, this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.handleError)
