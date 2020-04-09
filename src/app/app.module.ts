@@ -17,6 +17,8 @@ import { authInterceptorProviders } from './interceptors/auth.interceptor';
 import { WalletListComponent } from './components/wallet/wallet-list/wallet-list.component';
 import { WalletEditComponent } from './components/wallet/wallet-edit/wallet-edit.component';
 import { WalletCreateComponent } from './components/wallet/wallet-create/wallet-create.component';
+import { TransactionListComponent } from './components/transaction/transaction-list/transaction-list.component';
+import { TransactionCreateComponent } from './components/transaction/transaction-create/transaction-create.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { WalletCreateComponent } from './components/wallet/wallet-create/wallet-
     ProfileComponent,
     WalletListComponent,
     WalletEditComponent,
-    WalletCreateComponent
+    WalletCreateComponent,
+    TransactionListComponent,
+    TransactionCreateComponent
   ],
   imports: [
     BrowserModule,

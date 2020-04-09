@@ -10,6 +10,7 @@ import { BoardAdminComponent } from './components/board-admin/board-admin.compon
 import { WalletListComponent } from './components/wallet/wallet-list/wallet-list.component';
 import { WalletCreateComponent } from './components/wallet/wallet-create/wallet-create.component';
 import { WalletEditComponent } from './components/wallet/wallet-edit/wallet-edit.component';
+import { TransactionListComponent } from './components/transaction/transaction-list/transaction-list.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'wallet-list', component: WalletListComponent },
   { path: 'wallet-create', component: WalletCreateComponent },
   { path: 'wallet-edit/:id', component: WalletEditComponent },
+  { path: 'transaction-list/:walletId', component: TransactionListComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 

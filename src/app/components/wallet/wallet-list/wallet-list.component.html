@@ -12,6 +12,8 @@
             <th scope="col">Number</th>
             <th scope="col">Name</th>
             <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
           </tr>
           </thead>
           <tbody>
@@ -20,7 +22,12 @@
             <td>{{wallet.name}}</td>
             <td>    
               <span class="btn btn-info" routerLink="/wallet-edit/{{wallet.id}}">Edit </span>
+            </td>
+            <td>    
               <span class="btn btn-danger" (click)="deleteWallet(wallet.id)">Delete </span>
+            </td>
+            <td>    
+              <span class="btn btn-info" routerLink="/transaction-list/{{wallet.id}}">Show Transactions </span>
             </td>
           </tr>
           </tbody>

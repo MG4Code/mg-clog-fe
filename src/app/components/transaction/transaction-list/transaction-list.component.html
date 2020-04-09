@@ -1,0 +1,31 @@
+<div class="panel panel-primary">
+  <div class="no-data text-center" *ngIf="transactions.length == 0">
+    <p>There is no transaction for wallet with id {{walletId}} !</p>
+  </div>
+
+  <div *ngIf="transactions.length !== 0">
+    <h3 class="mb-3 text-center panel-header">Transaction List ({{walletId}})</h3>
+    <div class="col-md-12">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Date / Time</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Note</th>
+            <th scope="col">User</th>
+            <th scope="col">Checked</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let transaction of transactions">
+            <td>{{transaction.dateTime}}</td>
+            <td>{{transaction.amount}}</td>
+            <td>{{transaction.note}}</td>
+            <td>{{transaction.owner}}</td>
+            <td>{{transaction.checked}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

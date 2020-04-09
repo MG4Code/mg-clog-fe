@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { WalletService } from 'src/app/services/wallet.service';
 import { Wallet } from 'src/app/shared/wallet';
 
