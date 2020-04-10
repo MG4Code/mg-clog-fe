@@ -18,16 +18,22 @@
         </thead>
         <tbody>
           <tr *ngFor="let transaction of transactions">
-            <td>{{transaction.dateTime  | date:'short' }}</td>
-            <td>{{transaction.amount}}</td>
+            <td>{{transaction.dateTime  | date:'dd-MM-yyyy HH:mm' }}</td>
+            <td>{{transaction.amount | currency:'€'}}</td>
             <td>{{transaction.note}}</td>
-            <td>{{transaction.owner}}</td>
+            <td>{{transaction.owner}}              
+              <button class="btn btn-default" (click)="loadUser(transaction)">...</button></td>
             <td>
               <input type="checkbox" [(ngModel)]="transaction.checked" [ngModelOptions]="{standalone: true}"
                 (change)="changedChecked(transaction.id, transaction.checked)" />
             </td>
           </tr>
         </tbody>
+        <tfoot>
+          <tr>
+            <td><button class="btn btn-primary" *ngIf="hasMore" (click)="loadMore()">load more...</button></td>
+          </tr>
+        </tfoot>
       </table>
     </div>
   </div>

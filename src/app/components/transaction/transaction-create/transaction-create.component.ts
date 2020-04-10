@@ -39,6 +39,7 @@ export class TransactionCreateComponent implements OnInit {
 
     var theDate = new Date(year, month, day, hours, minutes, 0, 0);
 
+    this.transaction.amount = this.transaction.amount * 100;
     this.transaction.dateTime = theDate;
     this.transaction.checked = false;
     console.log('transaction' + JSON.stringify(this.transaction));

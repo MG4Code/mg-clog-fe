@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { Transaction } from '../shared/transaction'
-import { retry, catchError } from 'rxjs/operators';
+import { retry, catchError, map } from 'rxjs/operators';
 
 const TRANSACTION_URL = 'http://localhost:8080/clog/v1/transaction/';
 
@@ -40,8 +40,8 @@ export class TransactionService {
       );
   }
 
-  getTransactionsForWallet(walletId: string): Observable<Transaction[]> {
-    return this.http.get<Transaction[]>(TRANSACTION_URL + 'wallet/' + walletId)
+  getTransactionsForWallet(walletId: string, skip:number, limit:number): Observable<Transaction[]> {
+    return this.http.get<Transaction[]>(TRANSACTION_URL + 'wallet/' + walletId + "?skip="+skip+"&limit="+limit)
       .pipe(
         retry(1),
         catchError(this.handleError)
