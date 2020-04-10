@@ -29,4 +29,13 @@ export class TransactionListComponent implements OnInit {
     });
   }
 
+  changedChecked(id: string, checked: boolean) {
+    console.log("changed " + id + " to " + checked);
+    if (checked) {
+      this.transactionService.checkTransaction(id).subscribe(data => {});
+    } else {
+      this.transactionService.uncheckTransaction(id).subscribe(data => {});
+    }
+  }
+
 }

@@ -22,7 +22,10 @@
             <td>{{transaction.amount}}</td>
             <td>{{transaction.note}}</td>
             <td>{{transaction.owner}}</td>
-            <td>{{transaction.checked}}</td>
+            <td>
+              <input type="checkbox" [(ngModel)]="transaction.checked" [ngModelOptions]="{standalone: true}"
+                (change)="changedChecked(transaction.id, transaction.checked)" />
+            </td>
           </tr>
         </tbody>
       </table>

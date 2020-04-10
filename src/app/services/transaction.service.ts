@@ -57,14 +57,14 @@ export class TransactionService {
   }
 
   checkTransaction(id: string): Observable<Transaction> {
-    return this.http.get<Transaction>(TRANSACTION_URL + id + '/check')
+    return this.http.put<Transaction>(TRANSACTION_URL + id + '/check', {})
       .pipe(
         retry(1),
         catchError(this.handleError)
       );
   }
   uncheckTransaction(id: string): Observable<Transaction> {
-    return this.http.get<Transaction>(TRANSACTION_URL + id + '/uncheck')
+    return this.http.put<Transaction>(TRANSACTION_URL + id + '/uncheck', {})
       .pipe(
         retry(1),
         catchError(this.handleError)
