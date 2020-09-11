@@ -3,6 +3,8 @@ import { TransactionService } from 'src/app/services/transaction.service';
 import { Router } from '@angular/router';
 import { Transaction } from 'src/app/shared/transaction';
 import { WalletService } from 'src/app/services/wallet.service';
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-transaction-create',
@@ -11,12 +13,14 @@ import { WalletService } from 'src/app/services/wallet.service';
 })
 export class TransactionCreateComponent implements OnInit {
 
+  currentDate = new Date();
+
+  date: NgbDateStruct = { year: this.currentDate.getFullYear(), month: this.currentDate.getMonth()+1, day: this.currentDate.getDate() };
+  time: NgbTimeStruct = { hour: this.currentDate.getHours(), minute: this.currentDate.getMinutes(), second: 0 };
+
   ngOnInit(): void {
     this.loadWallets();
   }
-
-  date;
-  time = {hour: 13, minute: 30};
 
   @Input() transaction: Transaction = {} as Transaction;
 
@@ -26,13 +30,13 @@ export class TransactionCreateComponent implements OnInit {
     public transactionService: TransactionService,
     public walletService: WalletService,
     public router: Router
-  ) { }
+
+  ) {
+  }
 
   addTransaction() {
-    console.log('date' + JSON.stringify(this.date));
-    console.log('time' + JSON.stringify(this.time));
     var year = this.date.year;
-    var month = this.date.month;
+    var month = this.date.month-1;
     var day = this.date.day;
     var hours = this.time.hour;
     var minutes = this.time.minute;
@@ -43,7 +47,7 @@ export class TransactionCreateComponent implements OnInit {
     this.transaction.dateTime = theDate;
     this.transaction.checked = false;
     console.log('transaction' + JSON.stringify(this.transaction));
-   
+
     this.transactionService.createTransaction(this.transaction).subscribe((data: {}) => {
       this.router.navigate(['/transaction-list/' + this.transaction.wallet]);
     });
