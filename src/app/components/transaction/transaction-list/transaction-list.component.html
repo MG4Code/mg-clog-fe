@@ -1,10 +1,10 @@
 <div class="panel panel-primary">
   <div class="no-data text-center" *ngIf="transactions.length == 0">
-    <p>There is no transaction for wallet with id {{walletId}} !</p>
+    <p>There is no transaction for wallet with id {{walletName}} !</p>
   </div>
 
   <div *ngIf="transactions.length !== 0">
-    <h3 class="mb-3 text-center panel-header">Transaction List ({{walletId}})</h3>
+    <h3 class="mb-3 text-center panel-header">Transaction List ({{walletName}})</h3>
     <div class="col-md-12">
       <table class="table table-striped">
         <thead>
@@ -21,7 +21,7 @@
             <td>{{transaction.dateTime  | date:'dd-MM-yyyy HH:mm' }}</td>
             <td>{{transaction.amount | currency:'€'}}</td>
             <td>{{transaction.note}}</td>
-            <td>{{transaction.owner}}              
+            <td>{{transaction.owner}}
               <button class="btn btn-default" (click)="loadUser(transaction)">...</button></td>
             <td>
               <input type="checkbox" [(ngModel)]="transaction.checked" [ngModelOptions]="{standalone: true}"

@@ -18,6 +18,7 @@ import { TransactionListComponent } from './components/transaction/transaction-l
 import { TransactionCreateComponent } from './components/transaction/transaction-create/transaction-create.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthGuard } from './guards/auth-guard';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { AuthGuard } from './guards/auth-guard';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
+    NgSelectModule,
     FormsModule,
     HttpClientModule,
 

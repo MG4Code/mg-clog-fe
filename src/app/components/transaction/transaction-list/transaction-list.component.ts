@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TransactionService } from 'src/app/services/transaction.service';
 import { Transaction } from 'src/app/shared/transaction';
-import { map } from 'rxjs/operators';
 import { UserService } from 'src/app/services/user.service';
+import { WalletService } from 'src/app/services/wallet.service';
+import { Wallet } from 'src/app/shared/wallet';
 
 const PAGE_SIZE: number = 3;
 
@@ -16,6 +17,7 @@ export class TransactionListComponent implements OnInit {
 
   transactions: Transaction[] = [];
   walletId = this.actRoute.snapshot.params.walletId;
+  walletName = "";
   hasMore: boolean = false;
   pageCount: number = 0;
 
@@ -23,11 +25,13 @@ export class TransactionListComponent implements OnInit {
   constructor(
     public transactionService: TransactionService,
     public userService: UserService,
+    public walletService: WalletService,
     public actRoute: ActivatedRoute,
   ) {
   }
 
   ngOnInit(): void {
+    this.loadWallet();
     this.loadTransactions();
   }
 
@@ -59,11 +63,18 @@ export class TransactionListComponent implements OnInit {
       this.transactions.forEach(t => {
         console.log("Compare " + t.owner + " with " + transaction.owner);
         if (t.owner == transaction.owner) {
-          
+
           t.owner = user.username
         }
       })
     });
+  }
+
+  loadWallet() {
+    return this.walletService.getWallet(this.walletId)
+      .subscribe((data: Wallet) => {
+        this.walletName = data.name;
+      });
   }
 
   changedChecked(id: string, checked: boolean) {
